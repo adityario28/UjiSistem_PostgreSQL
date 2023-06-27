@@ -23,7 +23,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
  */
 public class InsertTable {
     
-    final static String line_map_val = "D:\\Tugas\\Semester9\\Pengujian Sistem\\Data-5\\Data-5\\Full\\";
+    final static String line_map_val = "C:\\Users\\LENOVO IP SLIM 3\\Documents\\Semester 9\\Uji Sistem\\TR UJI SISTEM\\All_Data-5\\Data-5\\UbahCol\\";
     private static JdbcTemplate jdbcTemplate;
     
     public static String InsertAllTable(String url, String user, String pass) throws Exception{
@@ -62,6 +62,7 @@ public class InsertTable {
                     String h = "";
                     String v = "";
                    
+                    
                     if (!firstline) {
                         String replace = line.replace("\"", "");
                         String[] headerr = header.split(",");
@@ -72,73 +73,10 @@ public class InsertTable {
                         String tipel = tipe_l.get(headerr[i].trim());
                         String tipet = tipe_t.get(headerr[i].trim());
                         
-                        if (val.equals("")) {
-                            String b = null;
-                            if (i != headerr.length - 1 ) {
-                                v = v + b + ",";
-                            } else {
-                                v = v + b;
-                            }
-                            
-                            if (i != headerr.length - 1 ) {
-                                h = h + head + ",";
-                            } else {
-                                h = h + head;
-                            }
-                            
-                        }
-                        //Menentukan INT
-                        else if ((tipel != null && tipel.equals("int")) || (tipet != null && tipet.equals("int"))) {
-                            String b = val;
-                            if (i != headerr.length - 1 ) {
-                                v = v + b + ",";
-                            } else {
-                                v = v + b;
-                            }
-                            
-                            if (i != headerr.length - 1 ) {
-                                h = h + head + ",";
-                            } else {
-                                h = h + head;
-                            }
-                            
-                        }
-                        //Menentukan Date
-                        else if ((tipel != null && tipel.equals("Date")) || (tipet != null && tipet.equals("Date"))) {
-                            String b = "\'" + val.substring(0, 4) + "-" + val.substring(4, 6) + "-" + val.substring(6, 8) + "\'";
-                            if (i != headerr.length - 1 ) {
-                                v = v + b + ",";
-                            } else {
-                                v = v + b;
-                            }
-                            
-                            if (i != headerr.length - 1 ) {
-                                h = h + head + ",";
-                            } else {
-                                h = h + head;
-                            }
-                            
-                        }
-                        //Menentukan Time
-                        else if (head.equals("RCVTIME")) {
-                            String b = null;
-                            if (i != headerr.length - 1 ) {
-                                v = v + b + ",";
-                            } else {
-                                v = v + b;
-                            }
-                            
-                            if (i != headerr.length - 1 ) {
-                                h = h + head + ",";
-                            } else {
-                                h = h + head;
-                            }
-                            
-                        }
-                        //Membedakan nama table ganda
-                        else if (head.equals("RCVNO")) {
-                            if (h.contains("RCVNO")) {
-                                String b = val;
+                        //MenentukanTableGanda
+                        while(!h.contains(head)) {
+                            if (val.equals("")) {
+                                String b = null;
                                 if (i != headerr.length - 1 ) {
                                     v = v + b + ",";
                                 } else {
@@ -146,12 +84,14 @@ public class InsertTable {
                                 }
 
                                 if (i != headerr.length - 1 ) {
-                                    h = h + head + "_1" + ",";
+                                    h = h + head + ",";
                                 } else {
-                                    h = h + head + "_1";
+                                    h = h + head;
                                 }
 
-                            } else {
+                            }
+                            //Menentukan INT
+                            else if ((tipel != null && tipel.equals("int")) || (tipet != null && tipet.equals("int"))) {
                                 String b = val;
                                 if (i != headerr.length - 1 ) {
                                     v = v + b + ",";
@@ -166,20 +106,52 @@ public class InsertTable {
                                 }
 
                             }
-                        }
-                        else {
-                            if (i != headerr.length - 1 ) {
-                                v = v + "\'" + val + "\'" + ",";
-                            } else {
-                                v = v + val;
+                            //Menentukan Date
+                            else if ((tipel != null && tipel.equals("Date")) || (tipet != null && tipet.equals("Date"))) {
+                                String b = "\'" + val.substring(0, 4) + "-" + val.substring(4, 6) + "-" + val.substring(6, 8) + "\'";
+                                if (i != headerr.length - 1 ) {
+                                    v = v + b + ",";
+                                } else {
+                                    v = v + b;
+                                }
+
+                                if (i != headerr.length - 1 ) {
+                                    h = h + head + ",";
+                                } else {
+                                    h = h + head;
+                                }
+
                             }
-                            
-                            if (i != headerr.length - 1 ) {
-                                h = h + head + ",";
-                            } else {
-                                h = h + head;
+                            //Menentukan Time
+                            else if (head.equals("RCVTIME")) {
+                                String b = null;
+                                if (i != headerr.length - 1 ) {
+                                    v = v + b + ",";
+                                } else {
+                                    v = v + b;
+                                }
+
+                                if (i != headerr.length - 1 ) {
+                                    h = h + head + ",";
+                                } else {
+                                    h = h + head;
+                                }
+
                             }
-                            
+                            else {
+                                if (i != headerr.length - 1 ) {
+                                    v = v + "\'" + val + "\'" + ",";
+                                } else {
+                                    v = v + "\'" + val + "\'";
+                                }
+
+                                if (i != headerr.length - 1 ) {
+                                    h = h + head + ",";
+                                } else {
+                                    h = h + head;
+                                }
+
+                            }
                         }
                     }
                     } else {

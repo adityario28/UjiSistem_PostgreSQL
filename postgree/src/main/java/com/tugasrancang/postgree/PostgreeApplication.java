@@ -8,9 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PostgreeApplication implements CommandLineRunner{
-        static final String DB_URL = "jdbc:postgresql://localhost:5433/ujisistemc";
+//        static final String DB_URL = "jdbc:postgresql://localhost:5433/ujisistemc";
+//        static final String USER = "postgres";
+//        static final String PASS = "Mahesario28.";
+        
+    //Ryan
+        static final String DB_URL = "jdbc:postgresql://localhost:5432/ujisistemc";
         static final String USER = "postgres";
-        static final String PASS = "Mahesario28.";
+        static final String PASS = "agung2002";
         
 	public static void main(String[] args) {
 		SpringApplication.run(PostgreeApplication.class, args);
