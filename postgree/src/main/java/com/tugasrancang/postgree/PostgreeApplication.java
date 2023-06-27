@@ -1,5 +1,6 @@
 package com.tugasrancang.postgree;
 
+import static com.tugasrancang.postgree.CreateTable.CreateAllTable;
 import static com.tugasrancang.postgree.CreateTable.CreateTable;
 import static com.tugasrancang.postgree.InsertTable.InsertAllTable;
 import org.springframework.boot.CommandLineRunner;
@@ -28,7 +29,7 @@ public class PostgreeApplication implements CommandLineRunner{
 
         @Override
         public void run(String... args) throws Exception {
-            System.out.println(CreateTable(DB_URL,USER,PASS));
+            System.out.println(CreateAllTable(DB_URL,USER,PASS));
             System.out.println(InsertAllTable(DB_URL,USER,PASS));
         }
 }
