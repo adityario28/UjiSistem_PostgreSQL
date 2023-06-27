@@ -28,15 +28,20 @@ public class DBCredential {
     private String DB_PWD;
     
     @Value("${spring.datasource.driver-class-name}")
-    private String DB_DRIVER;
+    private String driverClassName;
+
     
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(DB_DRIVER);
+        dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(DBURL);
         dataSource.setUsername(DB_USERNAME);
         dataSource.setPassword(DB_PWD);
+        System.out.println("driver name : " + driverClassName);
+        System.out.println("url : "  + DBURL);
+        System.out.println("username : "  + DB_USERNAME);
+        System.out.println("password : "  + DB_PWD);
         return dataSource;
     }
     
@@ -44,4 +49,5 @@ public class DBCredential {
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
+    
 }

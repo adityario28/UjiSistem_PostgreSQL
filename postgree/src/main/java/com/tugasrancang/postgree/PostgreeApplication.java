@@ -29,7 +29,7 @@ public class PostgreeApplication implements CommandLineRunner{
 
         @Override
         public void run(String... args) throws Exception {
-            System.out.println(CreateAllTable(DB_URL,USER,PASS));
-            System.out.println(InsertAllTable(DB_URL,USER,PASS));
+            System.out.println(CreateAllTable());
+//            System.out.println(InsertAllTable(DB_URL,USER,PASS));
         }
 }
