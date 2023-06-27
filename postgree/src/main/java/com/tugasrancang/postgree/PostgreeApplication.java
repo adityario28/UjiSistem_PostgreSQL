@@ -1,6 +1,6 @@
 package com.tugasrancang.postgree;
 
-import static com.tugasrancang.postgree.CreateTable.CreateAllTable;
+import static com.tugasrancang.postgree.CreateTable.CreateTable;
 import static com.tugasrancang.postgree.InsertTable.InsertAllTable;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,9 +13,14 @@ public class PostgreeApplication implements CommandLineRunner{
 //        static final String PASS = "Mahesario28.";
         
     //Ryan
-        static final String DB_URL = "jdbc:postgresql://localhost:5432/ujisistemc";
-        static final String USER = "postgres";
-        static final String PASS = "agung2002";
+       // static final String DB_URL = "jdbc:postgresql://localhost:5432/ujisistemc";
+       // static final String USER = "postgres";
+        //static final String PASS = "agung2002";
+    
+    //Nadya
+       static final String DB_URL = "jdbc:postgresql://localhost:5432/ujisistemc";
+       static final String USER = "postgres";
+        static final String PASS = "admin";
         
 	public static void main(String[] args) {
 		SpringApplication.run(PostgreeApplication.class, args);
@@ -23,7 +28,7 @@ public class PostgreeApplication implements CommandLineRunner{
 
         @Override
         public void run(String... args) throws Exception {
-            System.out.println(CreateAllTable(DB_URL,USER,PASS));
+            System.out.println(CreateTable(DB_URL,USER,PASS));
             System.out.println(InsertAllTable(DB_URL,USER,PASS));
         }
 }
