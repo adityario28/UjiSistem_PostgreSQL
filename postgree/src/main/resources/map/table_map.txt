@@ -7,9 +7,9 @@ RCVTIME:Time
 SUBTRNCD:Varchar
 ORDTYPE:Varchar
 ORDERRT:int
-MODE:Varchar
+MODE_1:Varchar
 SPMODE:Varchar
-OPERATOR:Varchar
+OPERATOR_1:Varchar
 STCKPNT:int
 REFNO:Varchar
 ORGRCVNO:Varchar
@@ -19,7 +19,6 @@ WASTE:int
 FORM_TYPE:int
 MAIL:Varchar
 SOLD_TO_COMPANY_CODE:Varchar
-RCVNO_1:Varchar		
 SALCSTMCD:Varchar
 SALBRCHCD:Varchar
 SHPBRCHCD:Varchar
