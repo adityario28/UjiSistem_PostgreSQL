@@ -14,22 +14,34 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author LENOVO IP SLIM 3
  */
+@Component
 public class InsertTable {
     
-    final static String line_map_val = "C:\\Users\\LENOVO IP SLIM 3\\Documents\\Semester 9\\Uji Sistem\\TR UJI SISTEM\\All_Data-5\\Data-5\\ALL\\";
+//    final static String line_map_val = "C:\\Users\\LENOVO IP SLIM 3\\Documents\\Semester 9\\Uji Sistem\\TR UJI SISTEM\\All_Data-5\\Data-5\\ALL\\";
+    final static String line_map_val = "D:\\Tugas\\Semester9\\Pengujian Sistem\\Data-5\\Data-5\\Full\\";
     private static JdbcTemplate jdbcTemplate;
     
-    public static String InsertAllTable(String url, String user, String pass) throws Exception{
-        String status = null;
+    @Autowired
+    public InsertTable(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+    
+    public static String InsertAllTable() throws Exception{
+        String status =null;
+        //Convert txt to Hashmap
         try {
-            InsertIntoTable(line_map_val,url,user,pass);
+//            InsertIntoTable(table_map,"TABLESTOCK",url,user,pass);
+            InsertIntoTable(line_map_val);
             status = "Table Inserted Succesfully";
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,8 +49,8 @@ public class InsertTable {
         return status;
     }
     
-    public static void InsertIntoTable(String data, String url, String user, String pass){
         //Ambil data map dan key
+    public static void InsertIntoTable(String data){
         Map<String, String> tipe_l = HashMapFromTextFile ("map/line_map.txt");
         String key = "";
         for (Map.Entry<String, String> entry : tipe_l.entrySet()) {
@@ -53,13 +65,9 @@ public class InsertTable {
         String[] files = new File(data).list();
         
         //Setting koneksi
-        SingleConnectionDataSource ds = new SingleConnectionDataSource();
+//        SingleConnectionDataSource ds = new SingleConnectionDataSource();
         //postgre
-        ds.setDriverClassName("org.postgresql.Driver");
-        ds.setUrl(url);
-        ds.setUsername(user);
-        ds.setPassword(pass);
-        JdbcTemplate jdbcTemplate = new JdbcTemplate( ds);
+//        JdbcTemplate jdbcTemplate = new JdbcTemplate( ds);
         
         try {
             for (String filename : files) {
@@ -162,6 +170,7 @@ public class InsertTable {
                             } else {
                                    jdbcTemplate.execute("INSERT INTO LINESTOCK (" + h + ") VALUES (" + v + ")");
                             }
+//                            ds.destroy();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -184,7 +193,7 @@ public class InsertTable {
                 catch (Exception e) {
                 };
             }
-            ds.destroy();
+//            ds.destroy();
         }
     }
 }

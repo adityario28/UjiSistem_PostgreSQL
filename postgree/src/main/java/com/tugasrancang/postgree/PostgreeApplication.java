@@ -14,9 +14,9 @@ public class PostgreeApplication implements CommandLineRunner{
 //        static final String PASS = "Mahesario28.";
         
     //Ryan
-        static final String DB_URL = "jdbc:postgresql://localhost:5432/public";
-        static final String USER = "postgres";
-        static final String PASS = "agung2002";
+//        static final String DB_URL = "jdbc:postgresql://localhost:5432/public";
+//        static final String USER = "postgres";
+//        static final String PASS = "agung2002";
     
     //Nadya
 //       static final String DB_URL = "jdbc:postgresql://localhost:5432/ujisistemc";
@@ -30,6 +30,6 @@ public class PostgreeApplication implements CommandLineRunner{
         @Override
         public void run(String... args) throws Exception {
             System.out.println(CreateAllTable());
-            System.out.println(InsertAllTable(DB_URL,USER,PASS));
+            System.out.println(InsertAllTable());
         }
 }
