@@ -30,6 +30,6 @@ public class PostgreeApplication implements CommandLineRunner{
         @Override
         public void run(String... args) throws Exception {
             System.out.println(CreateAllTable());
-            System.out.println(InsertAllTable());
+//            System.out.println(InsertAllTable());
         }
 }
