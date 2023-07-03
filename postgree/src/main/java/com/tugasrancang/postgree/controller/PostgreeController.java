@@ -5,7 +5,11 @@
 package com.tugasrancang.postgree.controller;
 
 import com.tugasrancang.postgree.service.PostgreeService;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,17 +19,28 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class PostgreeController {
+
     private final PostgreeService postgreeService;
-    
+
     @Autowired
-    public PostgreeController(PostgreeService postgreeService){
+    public PostgreeController(PostgreeService postgreeService) {
         this.postgreeService = postgreeService;
     }
-    
+
     @PostMapping("/insertData")
-    public String insertDataFromCSV(){
+    public String insertDataFromCSV() {
         String status = postgreeService.insertDataFromCSV();
         return status;
     }
-    
+
+    @GetMapping("/allData")
+//    public String readAllData(){
+//        postgreeService.readAllData();
+//        
+//        return "read All Data";
+//    }
+    public ResponseEntity<List<Map<String, Object>>> readAllData() {
+        List<Map<String, Object>> data = postgreeService.readAllData("LINESTOCK");
+        return ResponseEntity.ok(data);
+    }
 }
