@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class InsertTable {
     
 //    final static String line_map_val = "C:\\Users\\LENOVO IP SLIM 3\\Documents\\Semester 9\\Uji Sistem\\TR UJI SISTEM\\All_Data-5\\Data-5\\ALL\\";
-    final static String line_map_val = "D:\\Tugas\\Semester9\\Pengujian Sistem\\Data-5\\Data-5\\Full\\";
+//    final static String line_map_val = "D:\\Tugas\\Semester9\\Pengujian Sistem\\Data-5\\Data-5\\Full\\";
     private static JdbcTemplate jdbcTemplate;
     
     @Autowired
@@ -41,11 +41,26 @@ public class InsertTable {
         //Convert txt to Hashmap
         try {
 //            InsertIntoTable(table_map,"TABLESTOCK",url,user,pass);
-            InsertIntoTable(line_map_val);
+//            InsertIntoTable(line_map_val);
             status = "Table Inserted Succesfully";
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return status;
+    }
+    
+    public static String InsertByte(String header, String value) throws Exception {
+         String status = null;
+        try {
+                            if (header.contains("HoyaItemType")){
+                                   jdbcTemplate.execute("INSERT INTO TABLESTOCK (" + header + ") VALUES (" + value + ")");
+                            } else {
+                                   jdbcTemplate.execute("INSERT INTO LINESTOCK (" + header + ") VALUES (" + value + ")");
+                            }
+                            status = "Table Inserted Succesfully";
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
         return status;
     }
     

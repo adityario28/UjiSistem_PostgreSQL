@@ -5,7 +5,7 @@
 package com.tugasrancang.postgree;
 
 import static com.tugasrancang.postgree.InsertTable.InsertIntoTable;
-import static com.tugasrancang.postgree.InsertTable.line_map_val;
+//import static com.tugasrancang.postgree.InsertTable.line_map_val;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

@@ -5,14 +5,16 @@
 package com.tugasrancang.postgree.controller;
 
 import com.tugasrancang.postgree.service.PostgreeService;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.json.JSONObject;
 /**
  *
  * @author Ryo Aditya
@@ -31,6 +33,30 @@ public class PostgreeController {
     public String insertDataFromCSV() {
         String status = postgreeService.insertDataFromCSV();
         return status;
+    }
+    
+    @PostMapping("insertByte")
+    public String insertDataFromByte(@RequestBody String requestData){
+        JSONObject object = new JSONObject(requestData);
+        String[] keys = JSONObject.getNames(object);
+        Date awal = new Date(System.currentTimeMillis());
+        for (String key : keys) {
+            Object value = object.get(key);
+//            System.out.println(value.toString());
+//            System.out.println(key);
+            String status = postgreeService.insertDataFromByte(key, value.toString());
+            // Determine type of value and do something with it...
+        }
+        Date akhir = new Date(System.currentTimeMillis());
+        long waktu = (akhir.getTime() - awal.getTime());
+//        String data = new String(requestData);
+//        String[] parts = data.split(":");
+//        String header = new String(parts[0]);
+//        String value = new String(parts[1]);
+
+//        System.out.println("Header: " + header);
+//        System.out.println("Value: " + value);
+        return "";
     }
 
     @GetMapping("/allData")
