@@ -36,19 +36,20 @@ public class PostgreeController {
     }
     
     @PostMapping("insertByte")
-    public String insertDataFromByte(@RequestBody String requestData){
+    public double insertDataFromByte(@RequestBody String requestData){
         JSONObject object = new JSONObject(requestData);
         String[] keys = JSONObject.getNames(object);
+        double waktu = 0;
         Date awal = new Date(System.currentTimeMillis());
         for (String key : keys) {
             Object value = object.get(key);
 //            System.out.println(value.toString());
 //            System.out.println(key);
-            String status = postgreeService.insertDataFromByte(key, value.toString());
+            waktu = postgreeService.insertDataFromByte(key, value.toString());
             // Determine type of value and do something with it...
         }
-        Date akhir = new Date(System.currentTimeMillis());
-        long waktu = (akhir.getTime() - awal.getTime());
+//        Date akhir = new Date(System.currentTimeMillis());
+//        long waktu = (akhir.getTime() - awal.getTime());
 //        String data = new String(requestData);
 //        String[] parts = data.split(":");
 //        String header = new String(parts[0]);
@@ -56,7 +57,9 @@ public class PostgreeController {
 
 //        System.out.println("Header: " + header);
 //        System.out.println("Value: " + value);
-        return "";
+        
+        System.out.println("Table Inserted Succesfully // Time " + String.format("%.9f", waktu) + " second");
+        return waktu;
     }
 
     @GetMapping("/allData")

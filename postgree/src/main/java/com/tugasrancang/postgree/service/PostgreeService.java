@@ -45,13 +45,14 @@ public class PostgreeService {
         }
     }
     
-    public String insertDataFromByte(String header, String value) {
+    public double insertDataFromByte(String header, String value) {
+        double waktu = 0;
         try {
-            String status = insertTable.InsertByte(header, value);
-            return status;
+            waktu = insertTable.InsertByte(header, value);
+            return waktu;
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error occured while inserting data";
+            return waktu;
         }
     }
 

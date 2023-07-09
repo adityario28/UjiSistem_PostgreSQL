@@ -61,7 +61,7 @@ public class CreateTable {
             String createQuery = "CREATE TABLE " + tablename + " (";
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 createQuery += entry.getKey() + " " + entry.getValue() + ", ";
-                System.out.println(entry.getKey() + ";" + entry.getValue());
+//                System.out.println(entry.getKey() + ";" + entry.getValue());
             }
             if (!map.isEmpty()) {
                 createQuery = createQuery.substring(0, createQuery.length() - 2);
