@@ -31,8 +31,8 @@ public class PostgreeService {
 //    public PostgreeService(ReadTable readTable){
 //        this.readTable = readTable;
 //    }
-    public List<Map<String, Object>> readAllData(String tableName) {
-        return readTable.readAllTable(tableName);
+    public List<Map<String, Object>> readAllData(String tableName, String tableName2) {
+        return readTable.readAllTable(tableName, tableName2);
     }
 
     public String insertDataFromCSV() {

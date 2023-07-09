@@ -20,13 +20,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ReadTable {
+
     static private JdbcTemplate jdbcTemplate;
-    
-       @Autowired
+
+    @Autowired
     public ReadTable(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
-    
+
 //    public readAllTable(){
 ////        String status = null;
 //        try {
@@ -37,10 +38,11 @@ public class ReadTable {
 //        }
 ////        return status;
 //    }
-    
-     public List<Map<String, Object>> readAllTable(String tableName) {
+    public List<Map<String, Object>> readAllTable(String tableName, String tableName2) {
         try {
-            String readQuery = "SELECT * FROM " + tableName;
+            String readQuery = "SELECT * FROM " + tableName + "," + tableName2;
+//            String readQuery = "SELECT * FROM " + tableName
+//                    + " UNION ALL SELECT * FROM " + tableName2;
             return jdbcTemplate.queryForList(readQuery);
         } catch (Exception e) {
             e.printStackTrace();

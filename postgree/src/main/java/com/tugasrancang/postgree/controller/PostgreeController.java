@@ -69,7 +69,7 @@ public class PostgreeController {
 //        return "read All Data";
 //    }
     public ResponseEntity<List<Map<String, Object>>> readAllData() {
-        List<Map<String, Object>> data = postgreeService.readAllData("LINESTOCK");
+        List<Map<String, Object>> data = postgreeService.readAllData("LINESTOCK", "TABLESTOCK");
         return ResponseEntity.ok(data);
     }
 }
