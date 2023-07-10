@@ -55,5 +55,9 @@ public class PostgreeService {
             return waktu;
         }
     }
+    
+    public List<Map<String, Object>> readDataByRcvNo(String tableName, String rcvno) {
+        return readTable.readDataByRcvNo(tableName, rcvno);
+    }
 
 }

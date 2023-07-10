@@ -49,4 +49,16 @@ public class ReadTable {
             return Collections.emptyList();
         }
     }
+    
+    public List<Map<String, Object>> readDataByRcvNo(String tableName, String rcvno) {
+        try {
+            String readQuery = "SELECT * FROM " + tableName + " WHERE rcvno = ?";
+            return jdbcTemplate.queryForList(readQuery, rcvno);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    
 }

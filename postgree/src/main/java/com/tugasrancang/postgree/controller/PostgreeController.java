@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.PathVariable;
 /**
  *
  * @author Ryo Aditya
@@ -72,4 +73,11 @@ public class PostgreeController {
         List<Map<String, Object>> data = postgreeService.readAllData("LINESTOCK", "TABLESTOCK");
         return ResponseEntity.ok(data);
     }
+    
+    @GetMapping("/rcvno/{rcvno}")
+    public List<Map<String, Object>> readDataByRcvNo(@PathVariable String rcvno) {
+        String tableName = "TABLESTOCK";
+        return postgreeService.readDataByRcvNo(tableName, rcvno);
+    }
+    
 }
