@@ -85,12 +85,7 @@ public class InsertTable {
         
         BufferedReader br = null;
         String[] files = new File(data).list();
-        
-        //Setting koneksi
-//        SingleConnectionDataSource ds = new SingleConnectionDataSource();
-        //postgre
-//        JdbcTemplate jdbcTemplate = new JdbcTemplate( ds);
-        
+     
         try {
             for (String filename : files) {
                 String header = "";
